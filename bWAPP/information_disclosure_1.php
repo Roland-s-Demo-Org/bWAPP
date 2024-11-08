@@ -42,7 +42,7 @@ switch($_COOKIE["security_level"])
         
     default : 
             
-        phpinfo();            
+        $message = "There's nothing to disclose!";            
         break;
        
 }
