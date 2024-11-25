@@ -42,7 +42,7 @@ switch($_COOKIE["security_level"])
         
     default : 
             
-        phpinfo();            
+        $message = "Default case reached.";
         break;
        
 }
