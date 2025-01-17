@@ -42,7 +42,7 @@ switch($_COOKIE["security_level"])
         
     default : 
             
-        phpinfo();            
+        // phpinfo() removed for security reasons
         break;
        
 }
