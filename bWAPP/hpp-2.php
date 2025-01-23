@@ -130,7 +130,7 @@ function hpp($data)
 
     <h1>HTTP Parameter Pollution</h1>
 
-    <?php echo $message ?>
+    <?php echo htmlentities($message, ENT_QUOTES); ?>
     <table id="table_yellow">
 
         <tr height="30" bgcolor="#ffb717" align="center">

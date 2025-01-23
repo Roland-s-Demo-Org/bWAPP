@@ -110,7 +110,7 @@ if($_COOKIE["security_level"] == "2")
     
     <h1>CSRF (Transfer Amount)</h1>
 
-    <p>Amount on your account: <b> <?php echo $_SESSION["amount"] ?> EUR</b></p>
+    <p>Amount on your account: <b> <?php echo htmlentities($_SESSION["amount"], ENT_QUOTES); ?> EUR</b></p>
 
     <form action="<?php echo($_SERVER["SCRIPT_NAME"]);?>" method="GET">
 
@@ -126,7 +126,7 @@ if($_COOKIE["security_level"] == "1" or $_COOKIE["security_level"] == "2")
 {
 
 ?>
-        <input type="hidden" id="token" name="token" value="<?php echo $_SESSION["token"]?>">
+        <input type="hidden" id="token" name="token" value="<?php echo htmlentities($_SESSION["token"], ENT_QUOTES); ?>">
 
 <?php        
 
