@@ -148,7 +148,7 @@ function show_directory($directory)
             if($line != "." && $line != ".." && $line != ".htaccess")
             {
             
-                echo "<a href=\"" . $directory . "/" . $line . "\" target=\"_blank\">" . $line . "</a><br />";
+                echo "<a href=\"" . htmlentities($directory, ENT_QUOTES) . "/" . $line . "\" target=\"_blank\">" . $line . "</a><br />";
             
             }
         
