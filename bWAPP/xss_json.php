@@ -128,7 +128,7 @@ else
 
     <script>
 
-        var JSONResponseString = '<?php echo $string ?>';
+        var JSONResponseString = '<?php echo htmlentities($string, ENT_QUOTES) ?>';
 
         // var JSONResponse = eval ("(" + JSONResponseString + ")");
         var JSONResponse = JSON.parse(JSONResponseString);

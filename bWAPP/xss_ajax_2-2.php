@@ -102,7 +102,7 @@ if(isset($_GET["title"]))
         else if(trim($title) == "")
             echo '{"movies":[{"response":"HINT: our master really loves Marvel movies :)"}]}';
          else
-            echo '{"movies":[{"response":"' . $title . '??? Sorry, we don\'t have that movie :("}]}';
+            echo '{"movies":[{"response":"' . htmlentities($title, ENT_QUOTES) . '??? Sorry, we don\'t have that movie :("}]}';
 
     }
 
