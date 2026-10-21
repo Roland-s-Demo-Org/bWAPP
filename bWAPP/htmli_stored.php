@@ -78,9 +78,10 @@ if(isset($_POST["entry_add"]))
     else            
     { 
 
-        $sql = "INSERT INTO blog (date, entry, owner) VALUES (now(),'" . $entry . "','" . $owner . "')";
+        $sql = "INSERT INTO blog (date, entry, owner) VALUES (now(),?,?)";
 
-        $recordset = $link->query($sql);
+        $stmt = $link->prepare($sql);
+        $recordset = $stmt ? $stmt->bind_param("ss", $entry, $owner) && $stmt->execute() : false;
 
         if(!$recordset)
         {

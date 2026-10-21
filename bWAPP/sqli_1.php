@@ -140,7 +140,7 @@ if(isset($_GET["title"]))
 
     $title = $_GET["title"];
 
-    $sql = "SELECT * FROM movies WHERE title LIKE '%" . sqli($title) . "%'";
+    $sql = "SELECT * FROM movies WHERE title LIKE '%" . mysql_real_escape_string(sqli($title), $link) . "%'";
 
     $recordset = mysql_query($sql, $link);
 

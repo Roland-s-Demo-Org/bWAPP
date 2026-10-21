@@ -5,6 +5,7 @@ function get_tickets_stock($title)
 {
 
 	include("connect.php");        
+	$title = mysql_real_escape_string($title, $link);
 	$sql = "SELECT tickets_stock FROM movies WHERE title = '" . $title . "'";
 	$recordset = mysql_query($sql, $link);
         $row = mysql_fetch_array($recordset);
