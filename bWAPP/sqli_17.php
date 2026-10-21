@@ -92,14 +92,24 @@ $ip_address = $_SERVER["REMOTE_ADDR"];
 $user_agent = $_SERVER["HTTP_USER_AGENT"];
 
 // Writes the entry into the database
-$sql = "INSERT INTO visitors (date, user_agent, ip_address) VALUES (now(), '" . sqli($user_agent) . "', '" . $ip_address . "')";
+$sql = "INSERT INTO visitors (date, user_agent, ip_address) VALUES (now(), ?, ?)";
 
-$recordset = $link->query($sql);
+$stmt = $link->prepare($sql);
+
+if(!$stmt)
+{
+
+    die("Error: " . $link->error);
+
+}
+
+$stmt->bind_param("ss", $user_agent, $ip_address);
+$recordset = $stmt->execute();
 
 if(!$recordset)
 {
 
-    die("Error: " . $link->error);
+    die("Error: " . $stmt->error);
 
 }
 

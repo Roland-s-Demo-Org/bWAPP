@@ -137,6 +137,9 @@ function sqli($data)
         $password = $_POST["password"];
         $password = sqli($password);
 
+        $login = mysql_real_escape_string($login, $link);
+        $password = mysql_real_escape_string($password, $link);
+
         $sql = "SELECT * FROM heroes WHERE login = '" . $login . "' AND password = '" . $password . "'";
 
         // echo $sql;
