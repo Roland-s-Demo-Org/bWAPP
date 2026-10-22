@@ -150,9 +150,11 @@ if(isset($_GET["title"]))
 
     $db = new PDO("sqlite:".$db_sqlite);
 
-    $sql = "SELECT * FROM movies WHERE title LIKE '%" . sqli($title) . "%'";
+    $sql = "SELECT * FROM movies WHERE title LIKE ?";
 
-    $recordset = $db->query($sql);
+    $stmt = $db->prepare($sql);
+
+    $recordset = ($stmt && $stmt->execute(array("%" . $title . "%"))) ? $stmt : false;
 
     if(!$recordset)
     {

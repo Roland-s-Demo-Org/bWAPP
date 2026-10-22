@@ -135,9 +135,16 @@ function sqli($data)
 
         $db = new PDO("sqlite:".$db_sqlite);
 
-        $sql = "SELECT * FROM movies WHERE title = '" . sqli($title) . "' COLLATE NOCASE";
+        $sql = "SELECT * FROM movies WHERE title = ? COLLATE NOCASE";
 
-        $recordset = $db->query($sql);
+        $recordset = $db->prepare($sql);
+
+        if($recordset && !$recordset->execute([$title]))
+        {
+
+            $recordset = false;
+
+        }
 
         if(!$recordset)
         {

@@ -157,9 +157,10 @@ function sqli($data)
 
 		$id = $row["id"];
 
-                $sql = "INSERT INTO blog (id, date, entry, owner) VALUES (" . ++$id . ",'" . date('Y-m-d', time()) . "','" . $entry . "','" . $owner . "');";
+                $sql = "INSERT INTO blog (id, date, entry, owner) VALUES (?, ?, ?, ?);";
 
-		$db->exec($sql);
+		$stmt = $db->prepare($sql);
+		$stmt->execute([++$id, date('Y-m-d', time()), $entry, $owner]);
 
                 $message = "<font color=\"green\">The entry was added to our blog!</font>";
 

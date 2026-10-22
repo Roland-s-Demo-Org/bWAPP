@@ -162,7 +162,7 @@ function sqli($data)
 if(isset($_POST["movie"]))
 {   
 
-    $id = $_POST["movie"];
+    $id = (int) $_POST["movie"];
 
     $sql = "SELECT * FROM movies";
 
@@ -170,7 +170,7 @@ if(isset($_POST["movie"]))
     if($id)        
     {
 
-        $sql.= " WHERE id = " . sqli($id);
+        $sql.= " WHERE id = " . $id;
 
     }
 
