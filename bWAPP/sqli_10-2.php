@@ -61,7 +61,7 @@ if(!empty($_GET["title"]))
     $title = $_GET["title"];
 
     // Constructs the query
-    $sql = "SELECT * FROM movies WHERE title LIKE '%" . sqli($title) . "%'";
+    $sql = "SELECT * FROM movies WHERE title LIKE '%" . mysql_real_escape_string($title, $link) . "%'";
 
     // Queries the database
     $recordset = mysql_query($sql, $link);
