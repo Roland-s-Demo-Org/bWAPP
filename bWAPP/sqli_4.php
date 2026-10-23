@@ -128,7 +128,7 @@ function sqli($data)
 
         $title = $_REQUEST["title"];
 
-        $sql = "SELECT * FROM movies WHERE title = '" . sqli($title) . "'";
+        $sql = "SELECT * FROM movies WHERE title = '" . mysql_real_escape_string($title, $link) . "'";
 
         $recordset = mysql_query($sql, $link);
 

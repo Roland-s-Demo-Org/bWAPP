@@ -170,7 +170,9 @@ if(isset($_GET["movie"]))
     if($id)        
     {
 
-        $sql.= " WHERE id = " . sqli($id);
+        $id = (int) $id;
+
+        $sql.= " WHERE id = " . $id;
 
     }
 

@@ -141,6 +141,8 @@ function sqli($data)
         $password = sqli($password);
         $password = hash("sha1", $password, false);
 
+        $login = mysql_real_escape_string($login, $link);
+
         $sql = "SELECT * FROM users WHERE login = '" . $login . "'";
 
         // echo $sql;
