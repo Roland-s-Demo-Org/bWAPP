@@ -62,7 +62,9 @@ if(isset($_REQUEST["title"]))
 
     $title = $_REQUEST["title"];
 
-    $sql = "SELECT * FROM movies WHERE title = '" . sqli($title) . "'";
+    $title = mysql_real_escape_string($title, $link);
+
+    $sql = "SELECT * FROM movies WHERE title = '" . $title . "'";
 
     $recordset = mysql_query($sql, $link);
 
