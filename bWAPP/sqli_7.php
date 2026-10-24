@@ -140,9 +140,24 @@ function sqli($data)
             else
             {
 
-                $sql = "INSERT INTO blog (date, entry, owner) VALUES (now(),'" . $entry . "','" . $owner . "')";
+                $sql = "INSERT INTO blog (date, entry, owner) VALUES (now(),?,?)";
 
-                $recordset = $link->query($sql);
+                $stmt = $link->prepare($sql);
+
+                if($stmt)
+                {
+
+                    $stmt->bind_param("ss", $entry, $owner);
+                    $recordset = $stmt->execute();
+
+                }
+
+                else
+                {
+
+                    $recordset = false;
+
+                }
 
                 if(!$recordset)
                 {

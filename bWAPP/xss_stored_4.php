@@ -58,9 +58,12 @@ $ip_address = $_SERVER["REMOTE_ADDR"];
 $user_agent = $_SERVER["HTTP_USER_AGENT"];
 
 // Writes the entry into the database
-$sql = "INSERT INTO visitors (date, user_agent, ip_address) VALUES (now(), '" . xss(sqli_check_3($link, $user_agent)) . "', '" . $ip_address . "')";
+$user_agent_value = xss($user_agent);
+$sql = "INSERT INTO visitors (date, user_agent, ip_address) VALUES (now(), ?, ?)";
 
-$recordset = $link->query($sql);
+$stmt = $link->prepare($sql);
+$stmt->bind_param("ss", $user_agent_value, $ip_address);
+$recordset = $stmt->execute();
 
 if(!$recordset)
 {
